@@ -44,6 +44,10 @@ The workshop supports two tracks — follow the one that matches your preferred 
 - Git
 - Node.js
 
+## Code quality
+
+Run `npm run lint` to check the application source and lint configuration.
+
 ### VS Code track
 
 - VS Code v1.107+
@@ -61,6 +65,12 @@ The workshop supports two tracks — follow the one that matches your preferred 
 - **Runtime**: Node.js with [@astrojs/node](https://docs.astro.build/en/guides/integrations-guide/node/) adapter
 - **Font**: Press Start 2P (retro gaming font)
 - **API**: GitHub's contribution graph API
+
+## Contributions API
+
+The server-side endpoint `GET /api/contributions/:username` fetches contribution JSON from GitHub. For example, a browser client can request `/api/contributions/octocat` from the app's origin without calling GitHub directly or needing cross-origin access. Successful responses are cached per server process for one minute; error responses are not cached.
+
+Invalid usernames return `400`, unknown GitHub users return `404`, upstream failures return `502`, and upstream timeouts return `504`. Errors use the JSON shape `{ "error": "..." }`.
 
 ## Deployment Notes
 
