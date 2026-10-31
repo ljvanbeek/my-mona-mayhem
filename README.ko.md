@@ -44,6 +44,10 @@
 - Git
 - Node.js
 
+## 코드 품질
+
+`npm run lint`를 실행해 애플리케이션 소스와 린트 설정을 검사합니다.
+
 ### VS Code 트랙
 
 - VS Code v1.107+
@@ -61,6 +65,12 @@
 - **런타임:** [@astrojs/node](https://docs.astro.build/en/guides/integrations-guide/node/) 어댑터를 사용하는 Node.js
 - **글꼴:** Press Start 2P(레트로 게임 글꼴)
 - **API:** GitHub 기여 그래프 API
+
+## 기여 API
+
+서버 측 엔드포인트 `GET /api/contributions/:username`는 GitHub에서 기여 데이터를 JSON으로 가져옵니다. 예를 들어 브라우저 클라이언트는 GitHub에 직접 요청하거나 교차 출처 액세스를 사용할 필요 없이 앱의 출처에서 `/api/contributions/octocat`을 요청할 수 있습니다. 성공한 응답은 서버 프로세스별로 1분 동안 캐시되며, 오류 응답은 캐시되지 않습니다.
+
+잘못된 사용자 이름은 `400`, 존재하지 않는 GitHub 사용자는 `404`, 업스트림 실패는 `502`, 업스트림 시간 초과는 `504`를 반환합니다. 오류 응답은 `{ "error": "..." }` JSON 형식을 사용합니다.
 
 ## 배포 참고 사항
 
